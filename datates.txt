@@ -1,0 +1,4 @@
+''	3	L	Lajang	45	2B	Positive	Negative	Nol	Radioteraphy	Uncertain	Lab	Bone		Bone	Moderately differentiated	Localized	Central	Unknown	Not Applicable	200	Yes
+''	4	P	Menikah	55	2A	Positive	Negative	Nol	Radioteraphy	Uncertain	Lab	Bone		Bone	Moderately differentiated	Localized	Central	Unknown	Menopause	200	Yes
+''	5	P	Menikah	55	1A	Negative	Negative	Nol	Radioteraphy	Uncertain	Lab	Skin		Skin	Moderately differentiated	Localized	Central	Unknown	Pre Menopause	200	No
+''	6	P	Janda	75	1B	Negative	Positive	Nol	Radioteraphy	Uncertain	Lab	Ovary		Ovary	Moderately differentiated	Localized	Central	Unknown	Pre Menopause	200	No
