@@ -47,6 +47,12 @@
 
 	//CRUD data training
 	Route::resource('training', 'TrainingController');
+
+	//CRUD data jadwal
+	Route::resource('jadwal', 'JadwalController');
+
+	//CRUD data artikerl
+	Route::resource('article', 'ArticleController');
 	
 	/*Route::get('prediksi/{name}/{value}', 'PrediksiController@getData');*/
 	/*Route::get('/prediksi', 'PrediksiController@calculateRegresi');*/

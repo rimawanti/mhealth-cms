@@ -69,7 +69,7 @@
 
 
 						 
-						  	{{ Form::submit('Save Changes',['class'  => 'btn btn-primary pull-left']) }}
+						  	{{ Form::submit('Simpan perubahan',['class'  => 'btn btn-primary pull-left']) }}
 						 	{{-- {!! Html::linkRoute('pasien.update','Save Changes',array($pasiens->id),array('class'=> 'btn btn-primary pull-right')) !!} --}}
 					 	</fieldset>
 				 	{!! Form::close() !!}

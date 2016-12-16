@@ -11,6 +11,7 @@ use App\Pemeriksaan;
 use App\Pasien;
 use App\Dokter;
 use App\Staff;
+use App\Kategori;
 
 class PemeriksaanController extends Controller
 {
@@ -22,7 +23,7 @@ class PemeriksaanController extends Controller
     public function index()
     {
         //
-        $pemeriksaans = Pemeriksaan::all();
+        $pemeriksaans = Pemeriksaan::paginate(10);
         //return "lla";
         return view('pemeriksaan/index')->with('pemeriksaans',$pemeriksaans);
     }
@@ -37,7 +38,8 @@ class PemeriksaanController extends Controller
         $listpasien = Pasien::pluck('nama', 'id');
         $listdokter = Dokter::pluck('nama','id');
         $liststaff = Staff::pluck('nama','id');
-        return view('pemeriksaan/create', compact('listpasien','listdokter','liststaff'));//->with('listpasien',$listpasien);
+        $listkat = Kategori::pluck('nama','id');
+        return view('pemeriksaan/create', compact('listpasien','listdokter','liststaff','listkat'));//->with('listpasien',$listpasien);
     }
 
     /**
@@ -124,8 +126,9 @@ class PemeriksaanController extends Controller
         $listpasien = Pasien::pluck('nama', 'id');
         $listdokter = Dokter::pluck('nama','id');
         $liststaff = Staff::pluck('nama','id');
+        $listkat = Kategori::pluck('nama','id');
 
-        return view('pemeriksaan.edit', compact('pemeriksaan','listpasien','listdokter','liststaff'));
+        return view('pemeriksaan.edit', compact('pemeriksaan','listpasien','listdokter','liststaff','listkat'));
         //return view('pemeriksaan.edit')->with('pemeriksaan',$pemeriksaan);
     }
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Comment;
+use App\Pasien;
 
 class CommentController extends Controller
 {
@@ -16,7 +18,9 @@ class CommentController extends Controller
     public function index()
     {
         //
-        return "comment";
+        $comments = Comment::paginate(10);
+        //return "lla";
+        return view('comment/index')->with('comments',$comments);
     }
 
     /**
@@ -26,7 +30,9 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        
+          $listpasien = Pasien::pluck('nama', 'id');
+          return view('comment.create',compact('$comments','listpasien')); //->with('listpasien',$listpasien);
     }
 
     /**
@@ -37,7 +43,21 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        //store to database
+        $comment = new Comment;
+
+        $comment->pasien_id     = $request->pasien_id;
+        $comment->tanggal       = $request->tanggal;
+        $comment->count_like    =  $request->count_like;
+        $comment->isi           =  $request->isi;
+        
+       
+        $comment->save();
+        $request->session()->flash('success', 'The data was succesfully saved');
+
+        //redirect to another page
+        return redirect()->route('comment.index');
     }
 
     /**
@@ -48,7 +68,11 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+        //find id
+        $comment = comment::find($id);
+
+        //return view
+        return view('comment.show')->with('comment',$comment);
     }
 
     /**
@@ -59,7 +83,10 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        //find id
+        $comment = Comment::find($id);
+        $listpasien = Pasien::pluck('nama', 'id');
+          return view('comment.edit', compact ('listpasien','comment')); //->with('listpasien',$listpasien);
     }
 
     /**
@@ -71,7 +98,20 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //store to database
+        $comment = Comment::find($id);
+
+        $comment->pasien_id     = $request->input('pasien_id');
+        $comment->tanggal       = $request->input('tanggal');
+        $comment->count_like    =  $request->input('count_like');
+        $comment->isi           =  $request->input('isi');
+        
+       
+        $comment->save();
+        $request->session()->flash('success', 'The data was succesfully saved');
+
+        //redirect to another page
+        return redirect()->route('comment.index');
     }
 
     /**
@@ -82,6 +122,13 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = comment::find($id);
+       // Storage::delete($comment->foto);
+
+        $comment->delete();
+        Session::flash('success', 'The data was succesfully deleted');
+
+         //redirect to another page
+        return redirect()->route('comment.index');
     }
 }

@@ -33,7 +33,7 @@
 						 	<div class="form-group">
 							 	{{ Form::label ('kategori_label','Kategori',array('class' => 'col-md-2 control-label')) }}
 							 	<div class="col-md-9">
-							 		{{ Form::select('kategori',['Kontrol'=>'Kontrol','Laboraturium'=>'Laboraturium','USG'=>'USG','Cemoteraphy' => 'Cemoteraphy','Other'=>'Other'],'Kontrol',array('class' => 'form-control','id' => 'marital_status')) }}
+							 		{{ Form::select('kategori',$listkat,null,array('class' => 'form-control','id' => 'kategori')) }}
 							 	</div>
 						 	</div>
 						 	<div class="form-group">
@@ -93,14 +93,7 @@
 			</div>
 	</div>
 </div><!--/.row-->	
-<script type="text/javascript">
 
-    $("#tanggal").datetimepicker({
-
-        format: "dd MM yyyy - hh:ii"
-    });
-
-</script> 
 </body>
 </html>
 @endsection

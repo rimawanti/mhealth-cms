@@ -21,7 +21,8 @@ class PrediksiController extends Controller
      */
     public function index()
     {
-        $prediksis = Prediksi::all();
+        $prediksis = Prediksi::paginate(10);
+    
         return view('Prediksi/index')->with('prediksis',$prediksis);
     }
 

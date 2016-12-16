@@ -18,4 +18,8 @@ class Pemeriksaan extends Model
     {
     	return $this->belongsTo('App\Staff');
     }
+    public function kategori()
+    {
+        return $this->belongsTo('App\Kategori');
+    }
 }

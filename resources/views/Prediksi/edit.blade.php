@@ -252,7 +252,7 @@
 								 <div class="todo-list-item">
 							 	<button class="btn btn-primary" id="btn-todo" type="button">Hitung</button>
 							 	
-							 		{{ Form::submit('Simpan',array('class' => 'btn btn-success','id' => 'simpan'))}}
+							 		{{ Form::submit('Simpan perubahan',array('class' => 'btn btn-success','id' => 'simpan'))}}
 							 	</div>
 							 </div>
 						 	{{-- {!! Html::linkRoute('prediksi','Calculate',array(''),array('class'=> 'btn btn-primary pull-left')) !!} 

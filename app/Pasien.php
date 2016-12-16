@@ -15,6 +15,9 @@ class Pasien extends Model
 	public function pemeriksaans(){
 		return $this->hasMany('App\Pemeriksaan');
 	}
+	public function comments(){
+		return $this->hasMany('App\Comment');
+	}
     /*const THIS_ROLE_USER = 3;
   
    	protected $attributes = [
