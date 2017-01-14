@@ -74,10 +74,10 @@
 	                                  </td>
 					            </tr>
 					            @endforeach
-								
 								</tbody>
 							</table> <!-- end table -->
 							<!-- end panel body -->
+							<a href="{{ url('prediksi/akurasi')}}"><button class="btn btn btn-success" align="center" >Lihat Akurasinya</button> </a> 
 						</div>
 					</div>
 				</div>

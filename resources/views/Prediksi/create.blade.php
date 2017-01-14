@@ -238,13 +238,13 @@
 						 	<div class="form-group" id="class_div">
 							 	{{ Form::label ('class_label','Class',array('class' => 'col-md-2 control-label','id'=>'class_label')) }}
 							 	<div class="col-md-9">
-							 		{{ Form::label('class','It will shows yes or nah',array('class' => 'form-control','disable'=>'disable','id'=>'class')) }}
+							 		{{ Form::text('class','It will shows yes or nah',array('class' => 'form-control','disable'=>'disable','id'=>'class')) }}
 							 	</div>
 						 	</div>
 						 	<div class="form-group" id="nilai_div">
 							 	{{ Form::label ('nilai_label','Nilai Prediksi',array('class' => 'col-md-2 control-label','id' => 'nilai_label')) }}
 							 	<div class="col-md-9">
-							 		{{ Form::label('nilai',null,array('id'=>'nilai','class' => 'form-control','placeholder'=>'Nilai prediksi...')) }}
+							 		{{ Form::text('nilai',null,array('id'=>'nilai','class' => 'form-control','placeholder'=>'Nilai prediksi...')) }}
 							 	</div>
 						 	</div>
 
@@ -346,17 +346,17 @@ $(function(){
 	                 	$('#simpan').show();
 	                    //alert(data.nilai)
 
-	                    $('#nilai').text(data.nilai)
+	                    $('#nilai').val(data.nilai)
 	                    $('#query_time').text("Calculating tooks "+data.time+" seconds")
 	                    $('#nilai_div').attr('class','form-group has-success')
 
 	                    if(data.class == 0){
 	                    	//alert("NO")
 	                    	$('#class_div').attr('class','form-group has-success')
-	                     	$('#class').text("No Evidence of Cancer")
+	                     	$('#class').val("No Evidence of Cancer")
 	                    } else {
 	                    	$('#class_div').attr('class','form-group has-success')
-	                     	$('#class').text("Evidence of Cancer")
+	                     	$('#class').val("Evidence of Cancer")
 	                    }
 
 	                }

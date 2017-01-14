@@ -16,7 +16,7 @@
 				 	<div class="panel-body" id="form_all">
 				 			
 				 	<!-- panel body -->
-				 	{!! Form::model($pemeriksaan, ['route' => ['pemeriksaan.update',$pemeriksaan->id], 'method' => 'PUT','class' => 'form-horizontal' ]) !!}
+				 	{!! Form::model($pemeriksaan, ['route' => ['pemeriksaan.update',$pemeriksaan->id], 'method' => 'PUT','class' => 'form-horizontal','files' => true ]) !!}
 					 	<fieldset>
 						 	<div class="form-group">
 							 	{{ Form::label ('nama_pasien_label','Nama Pasien',array('class' => 'col-md-2 control-label')) }}
@@ -33,7 +33,7 @@
 						 	<div class="form-group">
 							 	{{ Form::label ('kategori_label','Kategori',array('class' => 'col-md-2 control-label')) }}
 							 	<div class="col-md-9">
-							 		{{ Form::select('kategori',$listkat,null,array('class' => 'form-control','id' => 'kategori')) }}
+							 		{{ Form::select('kategori_id',$listkat,null,array('class' => 'form-control','id' => 'kategori')) }}
 							 	</div>
 							 	</div>
 						 	</div>

@@ -53,6 +53,9 @@
 
 	//CRUD data artikerl
 	Route::resource('article', 'ArticleController');
+
+	//lihat akurasi
+	Route::get('prediksi/akurasi', 'PrediksiController@lihatAkurasi');
 	
 	/*Route::get('prediksi/{name}/{value}', 'PrediksiController@getData');*/
 	/*Route::get('/prediksi', 'PrediksiController@calculateRegresi');*/

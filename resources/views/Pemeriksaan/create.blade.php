@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Data Prediksi</title>
+	<title>Data Pemeriksaan</title>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 				 	<div class="panel-body" id="form_all">
 				 			
 				 	<!-- panel body -->
-				 	{!! Form::open(array('route' => 'pemeriksaan.store','class' => 'form-horizontal','id'=>'predict_form')) !!}
+				 	{!! Form::open(array('route' => 'pemeriksaan.store','class' => 'form-horizontal','id'=>'predict_form','files' => true)) !!}
 					 	<fieldset>
 						 	<div class="form-group">
 							 	{{ Form::label ('nama_pasien_label','Nama Pasien',array('class' => 'col-md-2 control-label')) }}
@@ -33,7 +33,7 @@
 						 	<div class="form-group">
 							 	{{ Form::label ('kategori_label','Kategori',array('class' => 'col-md-2 control-label')) }}
 							 	<div class="col-md-9">
-							 		{{ Form::select('kategori',$listkat,null,array('class' => 'form-control','id' => 'kategori')) }}
+							 		{{ Form::select('kategori_id',$listkat,null,array('class' => 'form-control','id' => 'kategori')) }}
 							 	</div>
 						 	</div>
 						 	<div class="form-group">
@@ -93,7 +93,6 @@
 			</div>
 	</div>
 </div><!--/.row-->	
-
 </body>
 </html>
 @endsection

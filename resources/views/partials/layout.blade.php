@@ -27,7 +27,8 @@
         @yield('content')
 
   </div>
-    
+     
+@include('partials._script')
 
   </body>
 </html>

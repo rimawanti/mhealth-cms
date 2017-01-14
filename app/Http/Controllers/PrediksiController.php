@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Prediksi;
 use App\Pasien;
 use Session;
+use DB;
 
 error_reporting(E_ALL);
 define('NUM_FEATURES', 21);
@@ -48,7 +49,7 @@ class PrediksiController extends Controller
     {
         //validate data
         $this->validate($request, array(
-            'pasien_id' => 'required',
+            'pasien_id' => 'required | unique:prediksis',
             
             ));
 
@@ -185,6 +186,16 @@ class PrediksiController extends Controller
          //redirect to another page
         return redirect()->route('prediksi.index');
     }
+
+    public function lihatAkurasi()
+    {
+       
+        return view('prediksi.akurasi');
+    }
+
+    /**
+        Mulai perhitungan
+    **/
     public function getData(Request $request){
 
         // start time
@@ -396,5 +407,30 @@ class PrediksiController extends Controller
     function vector_to_str($x)
     {
         return '['.implode(", ", $x).']';
+    }
+
+    public function getDataPrediksi($uid){
+        $id = DB::table('prediksis')->orderBy('updated_at','desc')->where('pasien_id', $uid)->pluck('id');
+        
+        //$row = array();
+
+        $j =0;
+      
+        foreach ($id as $i) {
+
+            $pem = Prediksi::find($i);
+        
+           
+            //echo $i."</br>";
+            $datas[$j] = array('prediksi' => $pem);
+            //json_decode($datass);
+            $j++;
+            
+        }
+       
+        $datass = json_encode(array('data_prediksi'=>$datas));
+        //$datass = json_encode(array('data_jadwal'=>$row));
+        return $datass;
+
     }
 }

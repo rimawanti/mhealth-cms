@@ -15,7 +15,7 @@
 				 <div class="panel-heading">Edit data {{ $pasien->nama }}</div>
 				 	<div class="panel-body">
 				 	<!-- panel body -->
-				 	{!! Form::model($pasien, ['route' => ['pasien.update',$pasien->id], 'method' => 'PUT','class' => 'form-horizontal' ]) !!}
+				 	{!! Form::model($pasien, ['route' => ['pasien.update',$pasien->id], 'method' => 'PUT','class' => 'form-horizontal','files' => true ]) !!}
 				 
 					 	<fieldset>
 						 		<div class="form-group">

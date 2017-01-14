@@ -46,7 +46,7 @@
 					            <tr>
 					            	<th> <a href="{{{ URL::route('pemeriksaan.show', array($pemeriksaan->id)) }}}"> {{ $pemeriksaan->id}} </a> </th>
 					               	<th> {{ $pemeriksaan->tanggal }} </th>
-					            	<th> {{ $pemeriksaan->kategori }} </th>
+					            	<th> {{ $pemeriksaan->kategori->nama }} </th>
 					            	<th> {{ $pemeriksaan->pasien->nama }} </th>
 					            	<th> {{ $pemeriksaan->dokter->nama }} </th>
 					            	<th> {{ $pemeriksaan->treatment_lanjut }} </th>
