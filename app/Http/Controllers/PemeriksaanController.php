@@ -80,9 +80,9 @@ class PemeriksaanController extends Controller
         if ($request->hasFile('foto')){
 
             $image = $request->file('foto');
-            $filename = time().'-'.$request->kategori.'.' .$image->getClientOriginalExtension();
+            $filename = time().'-'.$request->kategori_id.'.' .$image->getClientOriginalExtension();
             $location = public_path('images/' .$filename);
-            Image::make($image)->resize(700,350)->save($location);
+            Image::make($image)->resize(300,600)->save($location);
 
             //$oldFileImage = $article->foto;
 
@@ -158,9 +158,9 @@ class PemeriksaanController extends Controller
         if ($request->hasFile('foto')){
 
             $image = $request->file('foto');
-            $filename = time().' - '.$request->input('pasien_id').''.$request->input('kategori_id') . '.' .$image->getClientOriginalExtension();
+            $filename = time().''.$request->input('kategori_id'). '.' .$image->getClientOriginalExtension();
             $location = public_path('images/' .$filename);
-            Image::make($image)->resize(80,120)->save($location);
+            Image::make($image)->resize(300,600)->save($location);
 
             $oldFileImage = $pemeriksaan->foto;
 

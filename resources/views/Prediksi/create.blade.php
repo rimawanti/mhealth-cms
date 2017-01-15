@@ -8,7 +8,7 @@
 #loader {
   position: absolute;
   left: 50%;
-  top: 70%;
+  top: 80%;
   z-index: 1;
   width: 150px;
   height: 150px;
@@ -36,8 +36,8 @@
 }
 #loader-no-spin {
   position: absolute;
-  left: 45%;
-  top: 80%;
+  left: 40%;
+  top: 87%;
   z-index: 1;
   margin: -75px 0 0 -75px;
 }
@@ -111,130 +111,194 @@
 							 	
 							 	</div>
 						 	</div>
+						 	<!-- 1 -->
 						 	<div class="form-group">
 							 	{{ Form::label ('marital_status_label','Marital Status',array('class' => 'col-md-2 control-label')) }}
 							 	<div class="col-md-9">
-							 		{{ Form::select('marital_status',['Lajang'=>'Lajang','Menikah'=>'Menikah','Janda/Duda'=>'Janda/Duda'],'Lajang',array('class' => 'form-control','id' => 'marital_status')) }}
+							 		{{ Form::select('marital_status',['Lajang'=>'Lajang','Menikah'=>'Menikah','janda'=>'Janda/Duda'],'Lajang',array('class' => 'form-control','id' => 'marital_status')) }}
 							 	</div>
 						 	</div>
+						   <!-- 2 -->
 						 	<div class="form-group">
 							 	{{ Form::label ('age_label','Masukkan Umur',array('class' => 'col-md-2 control-label')) }}
 							 	<div class="col-md-9">
 							 		{{ Form::number('age',null,array('class' => 'form-control','placeholder'=>'Place your Age here','id'=>'age')) }}
 							 	</div>
 						 	</div>
+						 	<!-- 3 -->
 						 	<div class="form-group">
-							 	{{ Form::label ('stage_label','Masukkan Stage',array('class' => 'col-md-2 control-label')) }}
+							 	{{ Form::label ('is_kontrasepsi_umum_label','Apakah pernah kontrasepsi pil/suntik/IUD',array('class' => 'col-md-2 control-label')) }}
 							 	<div class="col-md-9">
-							 		{{ Form::select('stage',['Nol'=>'Nol','1A'=>'1A','1B'=>'1B','2A'=>'2A','3A'=>'3A','3B'=>'3B','3C'=>'3C','4/IV'=>'4/IV','Unknown'=>'Unknown'],'Nol',array('class' => 'form-control','id'=>'stage')) }}
+							 		{{ Form::radio('is_kontrasepsi_umum','no',true,array('id' => 'is_kontrasepsi_umum')) }} No
+							 		{{ Form::radio('is_kontrasepsi_umum','yes',false,array('id' => 'is_kontrasepsi_umum')) }} Yes
 							 	</div>
 						 	</div>
+						 	<!-- 4 -->
 						 	<div class="form-group">
-							 	{{ Form::label ('er_label','Masukkan ER',array('class' => 'col-md-2 control-label')) }}
+							 	{{ Form::label ('is_kontrasepsi_lain_label','Apakah pernah kontrasepsi lain?',array('class' => 'col-md-2 control-label')) }}
 							 	<div class="col-md-9">
-							 		{{ Form::select('er',['Positive'=>'Positive','Negative'=>'Negative','Unknown'=>'Unknown'],'Positive',array('class' => 'form-control','id'=>'er')) }}
+							 		{{ Form::radio('is_kontrasepsi_lain','no',true,array('id' => 'is_kontrasepsi_lain')) }} No
+							 		{{ Form::radio('is_kontrasepsi_lain','yes',false,array('id' => 'is_kontrasepsi_lain')) }} Yes
 							 	</div>
 						 	</div>
+						 	<!-- 5 -->
 						 	<div class="form-group">
-							 	{{ Form::label ('pr_label','Masukkan PR',array('class' => 'col-md-2 control-label')) }}
+							 	{{ Form::label ('is_now_kontrasepsi_umum_label','Apakah sekarang kontrasepsi pil/suntik/IUD',array('class' => 'col-md-2 control-label')) }}
 							 	<div class="col-md-9">
-							 		{{ Form::select('pr',['Positive'=>'Positive','Negative'=>'Negative','Unknown'=>'Unknown'],'Positive',array('class' => 'form-control','id'=>'pr')) }}
+							 		{{ Form::radio('is_now_kontrasepsi_umum','no',true,array('id' => 'is_now_kontrasepsi_umum')) }} Yes
+							 		{{ Form::radio('is_now_kontrasepsi_umum','yes',false,array('id' => 'is_now_kontrasepsi_umum')) }} Yes
 							 	</div>
 						 	</div>
+						 	<!-- 6 -->
 						 	<div class="form-group">
-							 	{{ Form::label ('her_2_label','Masukkan HER_2',array('class' => 'col-md-2 control-label')) }}
+							 	{{ Form::label ('is_now_kontrasepsi_lain_label','Apakah sekarang kontrasepsi lain?',array('class' => 'col-md-2 control-label')) }}
 							 	<div class="col-md-9">
-							 		{{ Form::select('her_2',['Nol'=>'Nol','Positive 1'=>'Positive 1','Positive 2'=>'Positive 2','Positive 3'=>'Positive 3','Unknown'=>'Unknown'],'Nol',array('class' => 'form-control','id'=>'her_2')) }}
+							 		{{ Form::radio('is_now_kontrasepsi_lain','no',true,array('id' => 'is_now_kontrasepsi_lain')) }} No
+							 		{{ Form::radio('is_now_kontrasepsi_lain','yes',false,array('id' => 'is_now_kontrasepsi_lain')) }} Yes
 							 	</div>
 						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('is_surgery_label','Surgery',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 		{{ Form::radio('is_surgery','Yes',true,array('id' => 'is_surgery')) }} Yes
-							 		{{ Form::radio('is_surgery','No',false,array('id' => 'is_surgery')) }} No
-							 	</div>
-						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('is_radioteraphy_label','Radioteraphy',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 		{{ Form::radio('is_radioteraphy','Yes',true,array('id' => 'is_radioteraphy')) }} Yes
-							 		{{ Form::radio('is_radioteraphy','No',false,array('id' => 'is_radioteraphy')) }} No
-							 	</div>
-						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('is_cemoteraphy_label','Cemoteraphy',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 		{{ Form::radio('is_cemoteraphy','Yes',true,array('id' => 'is_cemoteraphy')) }} Yes
-							 		{{ Form::radio('is_cemoteraphy','No',false,array('id' => 'is_cemoteraphy')) }} No
-							 	</div>
-						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('is_otherteraphy_label','Other teraphy',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 		{{ Form::radio('is_otherteraphy','Yes',true,array('id' => 'is_otherteraphy')) }} Yes
-							 		{{ Form::radio('is_otherteraphy','No',false,array('id' => 'is_otherteraphy')) }} No
-							 	</div>
-						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('behavior_label','Masukkan Behavior',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 		{{ Form::select('behavior',['Benign'=>'Benign','Uncertain'=>'Uncertain','Carcinoma In Situ' => 'Cancinoma In Situ','Malignant,primary site'=>'Malignant,primary site','Malignant,metastatic site'=>'Malignant,metastatic site','Malignant,uncertain'=>'Malignant,uncertain'],'Benign',array('class' => 'form-control','id'=>'behavior')) }}
-							 	</div>
-						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('basic_diagnosis_label','Most Valid Basic of Cancer Diagnosis',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 		{{ Form::select('basic_diagnosis',['Clinical Only'=>'Clinical Only','Lab,Xray,Endoscopy,Isotopes,Angiography,EEG'=>'Lab,Xray,Endoscopy,Isotopes,Angiography,EEG','Histology of primary'=>'Histology of primary','Cytologi/Haematology '=>'Cytologi/Haematology','Specific biochemial/immunology tests'=>'Specific biochemial/immunology tests', 'Histology of metastasis' => 'Histology of metastasis','Unknown' => 'Unknown'],'Clinical Only',array('class' => 'form-control','id'=>'basic_diagnosis')) }}
-							 	</div>
-						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('distant_metastases1_label','Site of Distant Metastases 1',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 		{{ Form::select('distant_metastases1',['None'=>'None','Distant lymph node'=>'Distant lymph node','Bone'=>'Bone','Liver'=>'Liver','Lung and/or Pleura'=>'Lung and/or Pleura','Ovary'=>'Ovary','Skin'=>'Skin','Other'=>'Other','Unknown'=>'Unknown'],'None',array('class' => 'form-control','id'=>'distant_metastases1')) }}
-							 	</div>
-						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('distant_metastases2_label','Site of Distant Metastases 2',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 		{{ Form::select('distant_metastases2',['None'=>'None','Distant lymph node'=>'Distant lymph node','Bone'=>'Bone','Liver'=>'Liver','Lung and/or Pleura'=>'Lung and/or Pleura','Ovary'=>'Ovary','Skin'=>'Skin','Other'=>'Other','Unknown'=>'Unknown'],'None',array('class' => 'form-control','id'=>'distant_metastases2')) }}
-							 	</div>
-						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('grade_label','Grade',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 		{{ Form::select('grade',['Well differentiated'=>'Well differentiated','Moderately differentiated'=>'Moderately differentiated','Poorly differentiated'=>'Poorly differentiated','Undifferentiated'=>'Undifferentiated','Not Applicable/unknown'=>'Not Applicable/unknown','Dedifferentiated'=>'Dedifferentiated'],'Well differentiated',array('class' => 'form-control','id'=>'grade')) }}
-							 	</div>
-						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('clinical_extent_label','Clinical extent of disease before treatment',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 		{{ Form::select('clinical_extent',['Insitu'=>'Insitu','Localized'=>'Localized','Direct Extenson'=>'Direct Extension','Regional Lymph Node Involvement'=>'Regional Lymph Node Involvement','Direct Extension with regional lymph node involvement','Direct Extension with regional lymph node involvement','Distant Mestastases'=>'Distant Mestastases','Not Applicable'=>'Not Applicable','Unknown'=>'Unknown'],'Insitu',array('class' => 'form-control','id'=>'clinical_extent')) }}
-							 	</div>
-						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('laterality','Laterality',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 		{{ Form::select('laterality_label',['Right'=>'Right','Left'=>'Left','Central'=>'Central','Bilateral'=>'Bilateral','Multiple'=>'Multiple','Not Applicable'=>'Not Applicable','Unknown' => 'Unknown'],'Right',array('class' => 'form-control','id'=>'laterality')) }}
-							 	</div>
-						 	</div>
-						 	<div class="form-group">
-							 	{{ Form::label ('angio_invasion_label','Angio Invasion',array('class' => 'col-md-2 control-label')) }}
-							 	<div class="col-md-9">
-							 	{{ Form::select('angio_invasion',['Positive'=>'Positive','Negative'=>'Negative','Unknown'=>'Unknown'],'Positive',array('class' => 'form-control','id'=>'angio_invasion')) }}
-							 	</div>
-						 	</div>
+						 	<!-- 7 -->
 						 	<div class="form-group">
 							 	{{ Form::label ('status_hormonal_label','Status hormonal',array('class' => 'col-md-2 control-label')) }}
 							 	<div class="col-md-9">
-							 	{{ Form::select('status_hormonal',['Pre Menopause'=>'Pre Menopause','Post Menopause'=>'Post Menopause','Not Applicable'=>'Not Applicable','Unknown'=>'Unknown'],'Pre Menopause',array('class' => 'form-control','id'=>'status_hormonal')) }}
+							 	{{ Form::select('status_hormonal',['pre'=>'Pre Menopause','post'=>'Post Menopause','unknown'=>'Unknown'],'pre',array('class' => 'form-control','id'=>'status_hormonal')) }}
 							 	</div>
 						 	</div>
+						 	<!-- 8 -->
 						 	<div class="form-group">
-							 	{{ Form::label ('difference_diagnosis_label','Difference of diagnosis and last contact date',array('class' => 'col-md-2 control-label')) }}
+							 	{{ Form::label ('age_of_mens_label','Umur Menstruasi pertama kali',array('class' => 'col-md-2 control-label')) }}
 							 	<div class="col-md-9">
-							 		{{ Form::number('difference_diagnosis',null,array('class' => 'form-control','placeholder'=>'Between 0-1232','id'=>'difference_diagnosis')) }}
+							 		{{ Form::number('age_of_mens',null,array('class' => 'form-control','placeholder'=>'Place the number  here','id'=>'age_of_mens')) }}
 							 	</div>
 						 	</div>
+						 	<!-- 9 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('is_lamentation_nipple_label','Apakah puting payudara tertarik ke dalam?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('is_lamentation_nipple','no',true,array('id' => 'is_lamentation_nipple')) }} No
+							 		{{ Form::radio('is_lamentation_nipple','yes',false,array('id' => 'is_lamentation_nipple')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- 10 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('is_lamentation_liquid_label','Apakah keluar cairan pada payudara?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('is_lamentation_liquid','no',true,array('id' => 'is_lamentation_liquid')) }} No
+							 		{{ Form::radio('is_lamentation_liquid','yes',false,array('id' => 'is_lamentation_liquid')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- 11 -->
+					 	 	<div class="form-group">
+							 	{{ Form::label ('is_lamentation_skinchange_label','Apakah ada perubahan pada kulit payudara?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('is_lamentation_skinchange','no',true,array('id' => 'is_lamentation_skinchange')) }} No
+							 		{{ Form::radio('is_lamentation_skinchange','yes',false,array('id' => 'is_lamentation_skinchange')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- 12 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('is_lamentation_lump_label','Apakah ada benjolan di payudara?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('is_lamentation_lump','yes',true,array('id' => 'is_lamentation_lump')) }} Yes
+							 		{{ Form::radio('is_lamentation_lump','no',false,array('id' => 'is_lamentation_lump')) }} No
+							 	</div>
+						 	</div>
+						 	<!-- 13 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('is_lamentation_other_label','Apakah ada keluhan lain di payudara?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('is_lamentation_other','no',true,array('id' => 'is_lamentation_other')) }} No
+							 		{{ Form::radio('is_lamentation_other','yes',false,array('id' => 'is_lamentation_other')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- 14 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('is_hist_fam_of_label','Memiliki keluarga dengan riwayat kanker?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('is_hist_fam_of_cancer','no',true,array('id' => 'is_hist_fam_of_cancer')) }} No
+							 		{{ Form::radio('is_hist_fam_of_cancer','yes',false,array('id' => 'is_hist_fam_of_cancer')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- 15 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('is_diabetes_label','Penderita diabetes?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('is_diabetes','no',true,array('id' => 'is_diabetes')) }} No
+							 		{{ Form::radio('is_diabetes','yes',false,array('id' => 'is_diabetes')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- 16 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('duration_of_lamentation_label','Lama keluhan yang dirasakan',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 	{{ Form::select('duration_of_lamentation',['9-12 bulan'=>'9-12 bulan','lebih dari 1 tahun'=>'Lebih dari 1 tahun','1-4 bulan'=>'1-4 bulan','unknown'=>'Tidak diketahui/None','kurang dari 1 bulan'=>'Kurang dari 1 bulan','5-8 bulan'=>'5-8 bulan'],'kurang dari 1 bulan',array('class' => 'form-control','id'=>'duration_of_lamentation')) }}
+							 	</div>
+						 	</div>
+						 	<!-- 17 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('IS_USG_LABEL','Menjalani pemeriksaan USG?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('IS_USG','yes',true,array('id' => 'IS_USG')) }} Yes
+							 		{{ Form::radio('IS_USG','no',false,array('id' => 'IS_USG')) }} No
+							 	</div>
+						 	</div>
+						 	<!-- 18 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('IS_MAMMOGRAPHY_LABEL','Menjalani pemeriksaan mamografi?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('IS_MAMMOGRAPHY','no',true,array('id' => 'IS_MAMMOGRAPHY')) }} No
+							 		{{ Form::radio('IS_MAMMOGRAPHY','yes',false,array('id' => 'IS_MAMMOGRAPHY')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- 19 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('IS_VC_LABEL','Menjalani pemeriksaan frozen section / Vries Coupe ?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('IS_VC','yes',true,array('id' => 'IS_VC')) }} Yes
+							 		{{ Form::radio('IS_VC','no',false,array('id' => 'IS_VC')) }} No
+							 	</div>
+						 	</div>
+						 	<!-- 20 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('IS_HPA_LABEL','Menjalani pemeriksaan HPA ?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('IS_HPA','no',true,array('id' => 'IS_HPA')) }} No
+							 		{{ Form::radio('IS_HPA','yes',false,array('id' => 'IS_HPA')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- 21 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('IS_IHC_LABEL','Menjalani pemeriksaan IHC Test ?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('IS_IHC','no',true,array('id' => 'IS_IHC')) }} No
+							 		{{ Form::radio('IS_IHC','yes',false,array('id' => 'IS_IHC')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- 22 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('IS_IOC_LABEL','Menjalani pemeriksaan IOC ?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('IS_IOC','no',true,array('id' => 'IS_IOC')) }} No
+							 		{{ Form::radio('IS_IOC','yes',false,array('id' => 'IS_IOC')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- 23 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('IS_SITOLOGI_LABEL','Menjalani pemeriksaan Cytologi ?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('IS_SITOLOGI','no',true,array('id' => 'IS_HPA')) }} No
+							 		{{ Form::radio('IS_SITOLOGI','yes',false,array('id' => 'IS_SITOLOGI')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- 24 -->
+						 	<div class="form-group">
+							 	{{ Form::label ('IS_FNA_LABEL','Menjalani pemeriksaan FNA ?',array('class' => 'col-md-2 control-label')) }}
+							 	<div class="col-md-9">
+							 		{{ Form::radio('IS_FNA','no',true,array('id' => 'IS_FNA')) }} No
+							 		{{ Form::radio('IS_FNA','yes',false,array('id' => 'IS_FNA')) }} Yes
+							 	</div>
+						 	</div>
+						 	<!-- CLASS -->
 						 	<div class="form-group" id="class_div">
 							 	{{ Form::label ('class_label','Class',array('class' => 'col-md-2 control-label','id'=>'class_label')) }}
 							 	<div class="col-md-9">
@@ -298,11 +362,11 @@ $(function(){
 
        $('#btn-todo').on("click",function() {
 
-       	if($('#age').val() == '' || $('#difference_diagnosis').val() == ''){
-       		alert("Kolom age dan difference_diagnosis harus diisi !");
+       	if($('#age').val() == '' || $('#age_of_mens').val() == ''){
+       		alert("Kolom umur dan usia awal menstruasi harus diisi !");
        	}
-       	else if ($('#difference_diagnosis').val() <= 0 || $('#difference_diagnosis').val() >= 1232 ){
-			alert("Nilai pada difference_diagnosis tidak sesuai !");
+       	else if ($('#age_of_mens').val() <= 0 || $('#age_of_mens').val() >= 150 || $('#age').val() <= 0 || $('#age').val() >= 150 ){
+			alert("Ada nilai yang tidak sesuai !");
        	}
     	    	
     	else {
@@ -319,24 +383,29 @@ $(function(){
 	                	"gender" : getIndexRadio('gender'),
 	                	"marital" : getIndex("marital_status"),
 	                	"age" : $('#age').val(),
-	                	"stage" : getIndex("stage"),
-	                	"er"	: getIndex("er"),
-	                	"pr"	: getIndex("pr"),
-	                	"her_2"	: getIndex("her_2"),
-	                	"is_surgery"	: getIndexRadio('is_surgery'),
-	                	"is_radioteraphy"	: getIndexRadio('is_radioteraphy'),
-	                	"is_cemoteraphy"	: getIndexRadio('is_cemoteraphy'),
-	                	"is_otherteraphy"	: getIndexRadio('is_otherteraphy'),
-	                	"behavior"	: getIndex("behavior"),
-	                	"basic_diagnosis"	: getIndex("basic_diagnosis"),
-	                	"distant_metastases1"	: getIndex("distant_metastases1"),
-	                	"distant_metastases2"	: getIndex("distant_metastases2"),
-	                	"grade"	: getIndex("grade"),
-	                	"clinical_extent"	: getIndex("clinical_extent"),
-	                	"laterality"	: getIndex("laterality"),
-	                	"angio_invasion"	: getIndex("angio_invasion"),
+	                	"is_kontrasepsi_umum" : getIndex("is_kontrasepsi_umum"),
+	                	"is_kontrasepsi_lain"	: getIndex("is_kontrasepsi_lain"),
+	                	"is_now_kontrasepsi_umum"	: getIndex("is_now_kontrasepsi_umum"),
+	                	"is_now_kontrasepsi_lain"	: getIndex("is_now_kontrasepsi_lain"),
 	                	"status_hormonal"	: getIndex("status_hormonal"),
-	                	"difference_diagnosis"	: $('#difference_diagnosis').val(),
+	                	"age_of_mens" : $('#age_of_mens').val(),
+	                	"is_lamentation_nipple"	: getIndexRadio('is_lamentation_nipple'),
+	                	"is_lamentation_liquid"	: getIndexRadio('is_lamentation_liquid'),
+	                	"is_lamentation_skinchange"	: getIndexRadio('is_lamentation_skinchange'),
+	                	"is_lamentation_lump"	: getIndexRadio('is_lamentation_lump'),
+	                	"is_lamentation_other"	: getIndex("is_lamentation_other"),
+	                	"is_hist_fam_of_cancer"	: getIndex("is_hist_fam_of_cancer"),
+	                	"is_diabetes"	: getIndex("is_diabetes"),
+	                	"duration_of_lamentation"	: getIndex("duration_of_lamentation"),
+	                	"IS_USG"	: getIndex("IS_USG"),
+	                	"IS_MAMMOGRAPHY"	: getIndex("IS_MAMMOGRAPHY"),
+	                	"IS_VC"	: getIndex("IS_VC"),
+	                	"IS_HPA"	: getIndex("IS_HPA"),
+	                	"IS_IHC"	: getIndex("IS_IHC"),
+	                	"IS_IOC"	: getIndex("IS_IOC"),
+	                	"IS_SITOLOGI"	: getIndex("IS_SITOLOGI"),
+	                	"IS_FNA"	: getIndex("IS_FNA"),
+	          
 	                },
 	                success: function(data)
 	                {
@@ -352,11 +421,13 @@ $(function(){
 
 	                    if(data.class == 0){
 	                    	//alert("NO")
+	                    	var str = 'Normal/Jinak'
 	                    	$('#class_div').attr('class','form-group has-success')
-	                     	$('#class').val("No Evidence of Cancer")
+	                     	$('#class').val(str)
 	                    } else {
+	                    	var str1 = "Ganas"
 	                    	$('#class_div').attr('class','form-group has-success')
-	                     	$('#class').val("Evidence of Cancer")
+	                     	$('#class').val(str1)
 	                    }
 
 	                }

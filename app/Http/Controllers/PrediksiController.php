@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Prediksi;
 use App\Pasien;
+use App\Training;
 use Session;
 use DB;
+use Storage;
+
+set_time_limit(0);
 
 error_reporting(E_ALL);
-define('NUM_FEATURES', 21);
+define('NUM_FEATURES', 24);
 
 class PrediksiController extends Controller
 {
@@ -49,7 +53,7 @@ class PrediksiController extends Controller
     {
         //validate data
         $this->validate($request, array(
-            'pasien_id' => 'required | unique:prediksis',
+            'pasien_id' => 'required',
             
             ));
 
@@ -60,26 +64,30 @@ class PrediksiController extends Controller
         $prediksi->gender =  $request->gender;
         $prediksi->marital_status =  $request->marital_status;
         $prediksi->age =  $request->age;
-        $prediksi->stage =  $request->stage;
-        $prediksi->er=  $request->er;
-        $prediksi->pr =  $request->pr;
-        $prediksi->her_2 =  $request->her_2;
-        $prediksi->is_surgery = $request->is_surgery;
-        $prediksi->is_radioteraphy =  $request->is_radioteraphy;
-        $prediksi->is_cemoteraphy  =  $request->is_cemoteraphy;
-        $prediksi->is_otherteraphy =  $request->is_otherteraphy;
-        $prediksi->behavior =  $request->behavior;
-        $prediksi->basic_diagnosis =  $request->basic_diagnosis;
-        $prediksi->distant_metastases1 =  $request->distant_metastases1;
-        $prediksi->distant_metastases2 =  $request->distant_metastases2;
-        $prediksi->grade =  $request->grade;
-        $prediksi->clinical_extent =  $request->clinical_extent;
-        $prediksi->laterality =  $request->laterality;
-        $prediksi->angio_invasion =  $request->angio_invasion;
-        $prediksi->status_hormonal =  $request->status_hormonal;
-        $prediksi->difference_diagnosis =  $request->difference_diagnosis;
-        $prediksi->class =  $request->input('class');
-        $prediksi->nilai =  $request->input('nilai');
+        $prediksi->is_kontrasepsi_umum =  $request->is_kontrasepsi_umum;
+        $prediksi->is_kontrasepsi_lain=  $request->is_kontrasepsi_lain;
+        $prediksi->is_now_kontrasepsi_umum =  $request->is_now_kontrasepsi_umum;
+        $prediksi->is_now_kontrasepsi_lain =  $request->is_now_kontrasepsi_lain;
+        $prediksi->IS_VC = $request->IS_VC;
+        $prediksi->age_of_mens =  $request->age_of_mens;
+        $prediksi->is_lamentation_nipple  =  $request->is_lamentation_nipple;
+        $prediksi->is_lamentation_liquid =  $request->is_lamentation_liquid;
+        $prediksi->is_lamentation_skinchange =  $request->is_lamentation_skinchange;
+        $prediksi->is_lamentation_lump =  $request->is_lamentation_lump;
+        $prediksi->is_lamentation_other =  $request->is_lamentation_other;
+        $prediksi->is_hist_fam_of_cancer =  $request->is_hist_fam_of_cancer;
+        $prediksi->is_diabetes =  $request->is_diabetes;
+        $prediksi->duration_of_lamentation =  $request->duration_of_lamentation;
+        $prediksi->IS_USG =  $request->IS_USG;
+        $prediksi->IS_MAMMOGRAPHY =  $request->IS_MAMMOGRAPHY;
+        $prediksi->IS_VC =  $request->IS_VC;
+        $prediksi->IS_HPA =  $request->IS_HPA;
+        $prediksi->IS_IHC =  $request->IS_IHC;
+        $prediksi->IS_IOC =  $request->IS_IOC;
+        $prediksi->IS_SITOLOGI =  $request->IS_SITOLOGI;
+        $prediksi->IS_FNA =  $request->IS_FNA;
+        $prediksi->class =  $request->class;
+        $prediksi->nilai =  $request->nilai;
 
 
         
@@ -137,30 +145,28 @@ class PrediksiController extends Controller
         $prediksi->$gender =  $request->input('gender');
         $prediksi->$marital_status =  $request->input('marital_status');
         $prediksi->age =  $request->input('age');
-        $prediksi->stage =  $request->input('stage');
-        $prediksi->er =  $request->input('er');
-        $prediksi->pr =  $request->input('pr');
-        $prediksi->her_2 =  $request->input('her_2');
-        $prediksi->is_surgery =  $request->input('is_surgery');
-        $prediksi->is_radioteraphy =  $request->input('is_radioteraphy');
-        $prediksi->is_cemoteraphy =  $request->input('is_cemoteraphy');
-        $prediksi->is_otherteraphy =  $request->input('is_otherteraphy');
-        $prediksi->behavior =  $request->input('behavior');
-        $prediksi->basic_diagnosis =  $request->input('basic_diagnosis');
-        $prediksi->distant_metastases1 =  $request->input('distant_metastases1');
-        $prediksi->distant_metastases2 =  $request->input('distant_metastases2');
-        $prediksi->grade =  $request->input('grade');
-        $prediksi->clinical_extent =  $request->input('clinical_extent');
-        $prediksi->laterality =  $request->input('laterality');
-        $prediksi->angio_invasion =  $request->input('angio_invasion');
-        $prediksi->status_hormonal =  $request->input('status_hormonal');
-        $prediksi->difference_diagnosis =  $request->input('difference_diagnosis');
-        $prediksi->class =  $request->input('class');
-        $prediksi->nilai =  $request->input('nilai');
-
-
-
-       
+        $prediksi->is_kontrasepsi_umum =  $request->input('is_kontrasepsi_umum');
+        $prediksi->is_kontrasepsi_lain=  $request->input('is_kontrasepsi_lain');
+        $prediksi->is_now_kontrasepsi_umum =  $request->input('is_now_kontrasepsi_umum');
+        $prediksi->is_now_kontrasepsi_lain =  $request->input('is_now_kontrasepsi_lain');
+        $prediksi->is_hist_fam_of_cancer =  $request->input('is_hist_fam_of_cancer');
+        $prediksi->age_of_mens =  $request->input('age_of_mens');
+        $prediksi->is_lamentation_nipple =  $request->input('is_lamentation_nipple');
+        $prediksi->is_lamentation_liquid =  $request->input('is_lamentation_liquid');
+        $prediksi->is_lamentation_skinchange =  $request->input('is_lamentation_skinchange');
+        $prediksi->is_lamentation_lump =  $request->input('is_lamentation_lump');
+        $prediksi->is_lamentation_other =  $request->input('is_lamentation_other');
+        $prediksi->is_hist_fam_of_cancer =  $request->input('is_hist_fam_of_cancer');
+        $prediksi->is_diabetes =  $request->input('is_diabetes');
+        $prediksi->duration_of_lamentation =  $request->input('duration_of_lamentation');
+        $prediksi->IS_USG =  $request->input('IS_USG');
+        $prediksi->IS_MAMMOGRAPHY =  $request->input('IS_MAMMOGRAPHY');
+        $prediksi->IS_VC =  $request->input('IS_VC');
+        $prediksi->IS_HPA =  $request->input('IS_HPA');
+        $prediksi->IS_IHC =  $request->input('IS_IHC');
+        $prediksi->IS_IOC =  $request->input('IS_IOC');
+        $prediksi->IS_SITOLOGI =  $request->input('IS_SITOLOGI');
+        $prediksi->IS_FNA =  $request->input('IS_FNA');
 
         $prediksi->save();
         $request->session()->flash('success', 'The data was succesfully updated');
@@ -203,35 +209,35 @@ class PrediksiController extends Controller
 
         //get Inputan
 
-        $gender =  $request->input('gender');
         $marital =  $request->input('marital_status');
         $age =  $request->input('age');
-        $stage =  $request->input('stage');
-        $er =  $request->input('er');
-        $pr =  $request->input('pr');
-        $her_2 =  $request->input('her_2');
-        $is_surgery =  $request->input('is_surgery');
-        $is_radioteraphy =  $request->input('is_radioteraphy');
-        $is_cemoteraphy =  $request->input('is_cemoteraphy');
-        $is_otherteraphy =  $request->input('is_otherteraphy');
-        $behavior =  $request->input('behavior');
-        $basic_diagnosis =  $request->input('basic_diagnosis');
-        $distantmetastases1 =  $request->input('distant_metastases1');
-        $distantmetastases2 =  $request->input('distant_metastases2');
-        $grade =  $request->input('grade');
-        $clinical_extent =  $request->input('clinical_extent');
-        $laterality =  $request->input('laterality');
-        $angio_invasion =  $request->input('angio_invasion');
-        $status_hormonal =  $request->input('status_hormonal');
-        $difference_diagnosis =  $request->input('difference_diagnosis');
+        $is_kontrasepsi_umum =  $request->input('is_kontrasepsi_umum');
+        $is_kontrasepsi_lain=  $request->input('is_kontrasepsi_lain');
+        $is_now_kontrasepsi_umum =  $request->input('is_now_kontrasepsi_umum');
+        $is_now_kontrasepsi_lain =  $request->input('is_now_kontrasepsi_lain');
+        $is_hist_fam_of_cancer =  $request->input('is_hist_fam_of_cancer');
+        $age_of_mens =  $request->input('age_of_mens');
+        $is_lamentation_nipple =  $request->input('is_lamentation_nipple');
+        $is_lamentation_liquid =  $request->input('is_lamentation_liquid');
+        $is_lamentation_skinchange =  $request->input('is_lamentation_skinchange');
+        $is_lamentation_lump =  $request->input('is_lamentation_lump');
+        $is_lamentation_other =  $request->input('is_lamentation_other');
+        $is_hist_fam_of_cancer =  $request->input('is_hist_fam_of_cancer');
+        $is_diabetes =  $request->input('is_diabetes');
+        $duration_of_lamentation =  $request->input('duration_of_lamentation');
+        $IS_USG =  $request->input('IS_USG');
+        $IS_MAMMOGRAPHY =  $request->input('IS_MAMMOGRAPHY');
+        $IS_VC =  $request->input('IS_VC');
+        $IS_HPA =  $request->input('IS_HPA');
+        $IS_IHC =  $request->input('IS_IHC');
+        $IS_IOC =  $request->input('IS_IOC');
+        $IS_SITOLOGI =  $request->input('IS_SITOLOGI');
+        $IS_FNA =  $request->input('IS_FNA');
 
         //var_dump($is_surgery); die();
 
         $param = array();
-        $param = array($gender,$marital,$age,$stage,$er,$pr,$her_2,
-                        $is_surgery,$is_radioteraphy,$is_cemoteraphy,$is_otherteraphy,$behavior,$basic_diagnosis,$distantmetastases1,
-                        $distantmetastases2, $grade, $clinical_extent,$laterality,
-                        $angio_invasion,$status_hormonal,$difference_diagnosis);
+        $param = array($marital,$age,$is_kontrasepsi_umum,$is_kontrasepsi_lain,$is_now_kontrasepsi_umum,$is_now_kontrasepsi_lain, $is_hist_fam_of_cancer,$age_of_mens,$is_lamentation_nipple,$is_lamentation_liquid,$is_lamentation_skinchange,$is_lamentation_lump,$is_lamentation_other, $is_hist_fam_of_cancer, $is_diabetes, $duration_of_lamentation,$IS_USG,$IS_MAMMOGRAPHY,$IS_VC,$IS_HPA);
      
         $prediksiue = array();
         $prediksiue = $this->calculateRegresi($param);
@@ -250,28 +256,40 @@ class PrediksiController extends Controller
     }
 
     // PERHITUNGAN DIMULAI !!!! //
-    function retrieveData() 
+    public function retrieveDataT($f) 
     {
-        $file = fopen('training.csv', 'r');
-        $dataTrain = array();
-
-        while ($entries = fgetcsv($file)) {
-            $dataTrain[] = $entries;
+        //echo "f ".$f;
+        if($f == 1){
+            $t = Training::all()->makeHidden('class')->toArray();
+            $facts = array_values(array_map('array_values', $t));
+            return $facts;
         }
-        fclose($file);
-        return $dataTrain;
+
+        else if($f == 2) {
+            $label = Training::all()->pluck('class')->toArray();
+      
+            return $label;
+        }
+       
+        
     }
     public function calculateRegresi($dataTest)
     {
 
-        //$train = retrieveData();
+        $training = $this->retrieveDataT(1);
+        $labels = $this->retrieveDataT(2);
+        /*echo "<pre>";
+        print_r($labels);*/
 
-        $training = array(
-            array(1,1,50,1,1,1,0,1,0,0,1,0,1,0,0,0,0,0,1,0,10),
-            array(1,1,55,2,1,0,1,0,1,0,1,1,1,2,0,1,2,3,2,0,1030),
-            array(0,3,60,2,2,1,1,1,1,1,0,2,3,0,2,1,3,0,1,3,900),
-            array(0,0,60,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,600),
-            array(1,1,30,2,1,2,1,0,1,1,1,1,1,2,0,1,2,3,2,1,200),
+
+        //$labels = $this->retrieveDataT('label.csv');
+
+       /*$training = array(
+            array(1,1,50,1,1,1,0,1,0,0,1,0,1,0,0,0,0,0,1,0,10,1,0,1),
+            array(1,1,55,2,1,0,1,0,1,0,1,1,1,2,0,1,2,3,2,0,1030,0,1,0),
+            array(0,3,60,2,2,1,1,1,1,1,0,2,3,0,2,1,3,0,1,3,900,1,1,1),
+            array(0,0,60,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,600,0,0,0),
+            array(1,1,30,2,1,2,1,0,1,1,1,1,1,2,0,1,2,3,2,1,200,0,1,0),
             
             
         );
@@ -283,7 +301,7 @@ class PrediksiController extends Controller
             1
           
             
-        );
+        );*/
         $NUM_SAMPLES = sizeof($training);
         // Initialize the weights array to random starting ues.
         // There are always 1+NUM_FEATURES weights, because the first weight
@@ -291,11 +309,11 @@ class PrediksiController extends Controller
         //   weights * features = weight0 + weight1 * feature1 + weight2 * feature2 + ...
         $weights = array();
         for ($j=0; $j < NUM_FEATURES+1; $j++)
-            $weights[$j] = mt_rand()/mt_getrandmax()*5.0;
+            $weights[$j] = mt_rand()/mt_getrandmax();
         // Calculate the data we need for feature scaling (mean/variance)
         $scaling = $this->calc_feature_scaling($training);
         $learning_rate = 0.05;
-        $steps = 2000; // number of steps to take for gradient descent
+        $steps = 200; // number of steps to take for gradient descent
         $temp = array(); // temp array to hold updates for weights during the loop
         for ($n = 0; $n < $steps; $n++) {
             // For each weight, perform the gradient descent step and save the result to temp
@@ -410,25 +428,14 @@ class PrediksiController extends Controller
     }
 
     public function getDataPrediksi($uid){
-        $id = DB::table('prediksis')->orderBy('updated_at','desc')->where('pasien_id', $uid)->pluck('id');
+        $id = DB::table('prediksis')->orderBy('updated_at','desc')->where('pasien_id', $uid)->pluck('id')->first();
         
-        //$row = array();
-
+       
         $j =0;
       
-        foreach ($id as $i) {
-
-            $pem = Prediksi::find($i);
+        $pem = Prediksi::find($id);
         
-           
-            //echo $i."</br>";
-            $datas[$j] = array('prediksi' => $pem);
-            //json_decode($datass);
-            $j++;
-            
-        }
-       
-        $datass = json_encode(array('data_prediksi'=>$datas));
+        $datass = json_encode(array('data_prediksi'=>$pem));
         //$datass = json_encode(array('data_jadwal'=>$row));
         return $datass;
 
